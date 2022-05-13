@@ -47,17 +47,16 @@ def serve_layout():
     df["all"] = "all"
     fig = px.treemap(df,
                     path=["currency"],
-                    values='value',color='duration', color_continuous_scale=[[0, '#0066ff'],[0.5, '#ffff99'], [1, '#ff0000']],)
+                    values='value',color='duration', color_continuous_scale=[[0, '#0066ff'],[0.5, '#ffffff'], [1, '#ff0000']], height=700)
 
 
+    #uncomment to stack
+    #fig.update_traces(tiling=dict(packing="slice"))
     fig.update_layout(
         uniformtext=dict(minsize=20, mode='show'),
-        # margin = dict(t=100, l=25, r=25, b=0)
+        margin = dict(t=100, l=25, r=25, b=0)
     )
     
-    # fig.show()
-
-    # fig.show()
 
     app.layout = html.Div([
         dcc.Graph(figure=fig)
